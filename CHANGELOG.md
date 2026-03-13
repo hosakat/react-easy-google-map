@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.1.0] - 2026-03-13
 
 ### Added
+
 - Initial release of `react-easy-google-map`.
 - `GoogleMap` component for easy rendering of Google Maps with multiple markers.
 - Built-in `InfoWindow` support for data pins.

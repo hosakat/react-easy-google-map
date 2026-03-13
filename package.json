@@ -1,52 +1,54 @@
 {
-	"name": "react-easy-google-map",
-	"version": "0.1.0",
-	"description": "An easy-to-use React component for Google Maps with advanced markers and info windows.",
-	"main": "dist/index.js",
-	"module": "dist/index.mjs",
-	"types": "dist/index.d.ts",
-	"exports": {
-		".": {
-			"types": "./dist/index.d.ts",
-			"import": "./dist/index.mjs",
-			"require": "./dist/index.js"
-		}
-	},
-	"bugs": {
-		"url": "https://github.com/hosakat/react-easy-google-map/issues"
-	},
-	"homepage": "https://github.com/hosakat/react-easy-google-map#readme",
-	"scripts": {
-		"build": "tsup",
-		"dev": "tsup --watch"
-	},
-	"peerDependencies": {
-		"@vis.gl/react-google-maps": "^1.7.1",
-		"react": "^18.0.0 || ^19.0.0",
-		"react-dom": "^18.0.0 || ^19.0.0"
-	},
-	"devDependencies": {
-		"@types/react": "^19.2.14",
-		"@types/react-dom": "^19.2.3",
-		"@vis.gl/react-google-maps": "^1.7.1",
-		"react": "^19.2.4",
-		"react-dom": "^19.2.4",
-		"tsup": "^8.5.1",
-		"typescript": "^5.9.3"
-	},
-	"files": [
-		"dist"
-	],
-	"keywords": [
-		"react",
-		"google-map",
-		"google-maps",
-		"markers",
-		"maps",
-		"Google Maps",
-		"Google Maps JavaScript API",
-		"Maps"
-	],
-	"author": "",
-	"license": "MIT"
+  "name": "react-easy-google-map",
+  "version": "0.1.0",
+  "description": "An easy-to-use React component for Google Maps with advanced markers and info windows.",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "bugs": {
+    "url": "https://github.com/hosakat/react-easy-google-map/issues"
+  },
+  "homepage": "https://github.com/hosakat/react-easy-google-map#readme",
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "format": "prettier --write ."
+  },
+  "peerDependencies": {
+    "@vis.gl/react-google-maps": "^1.7.1",
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vis.gl/react-google-maps": "^1.7.1",
+    "prettier": "^3.8.1",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "react",
+    "google-map",
+    "google-maps",
+    "markers",
+    "maps",
+    "Google Maps",
+    "Google Maps JavaScript API",
+    "Maps"
+  ],
+  "author": "",
+  "license": "MIT"
 }
