@@ -34,7 +34,7 @@ jobs:
         run: npm run lint
 
       - name: Run Prettier
-        run: npm run fmt
+        run: npm run format
 
       - name: Commit changes if any
         run: |
