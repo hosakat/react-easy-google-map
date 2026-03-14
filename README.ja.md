@@ -72,14 +72,14 @@ export default App;
 
 ### `GoogleMap` Props
 
-| プロパティ        | 型                           | 必須   | 説明                                                                               |
-| :---------------- | :--------------------------- | :----- | :--------------------------------------------------------------------------------- |
-| `apiKey`          | `string`                     | はい   | Google Maps APIキー。                                                              |
-| `mapId`           | `string`                     | はい   | Google Maps Map ID（高度なマーカーを表示するために必要です）。                     |
-| `data`            | `MapData<T>[]`               | はい   | 各ピンと情報ウィンドウのデータを含む配列。                                         |
-| `centerMarker`    | `PinContent`                 | はい   | 中心のマーカーの設定。                                                             |
-| `mapProps`        | `Omit<MapProps, ...>`        | いいえ | 内部の `@vis.gl/react-google-maps` の `<Map>` コンポーネントに渡す追加プロパティ。 |
-| `infoWindowProps` | `Omit<InfoWindowProps, ...>` | いいえ | 内部の `<InfoWindow>` コンポーネントに渡す追加プロパティ。                         |
+| プロパティ        | 型                           | 必須   | 説明                                                                                                                                                    |
+| :---------------- | :--------------------------- | :----- | :------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `apiKey`          | `string`                     | はい   | Google Maps APIキー。                                                                                                                                   |
+| `mapId`           | `string`                     | はい   | Google Maps Map ID（高度なマーカーを表示するために必要です）。                                                                                          |
+| `data`            | `MapData<T>[]`               | はい   | 各ピンと情報ウィンドウのデータを含む配列。                                                                                                              |
+| `centerMarker`    | `PinContent`                 | はい   | 中心のマーカーの設定。                                                                                                                                  |
+| `mapProps`        | `Omit<MapProps, ...>`        | いいえ | 内部の `@vis.gl/react-google-maps` の `<Map>` コンポーネントに渡す追加プロパティ。                                                                      |
+| `infoWindowProps` | `Omit<InfoWindowProps, ...>` | いいえ | 内部の [`<InfoWindow>`](https://visgl.github.io/react-google-maps/docs/api-reference/components/info-window#props) コンポーネントに渡す追加プロパティ。 |
 
 ### データ型定義
 
@@ -87,11 +87,11 @@ export default App;
 
 単一のピン（マーカー）の設定。
 
-| プロパティ            | 型                             | 説明                                                 |
-| :-------------------- | :----------------------------- | :--------------------------------------------------- |
-| `position`            | `{ lat: number, lng: number }` | マーカーの緯度・経度。                               |
-| `pinStyle`            | `object` (任意)                | ピンの外観スタイル（下記参照）。                     |
-| `advancedMarkerProps` | `object` (任意)                | 内部の `<AdvancedMarker>` に直接渡されるプロパティ。 |
+| プロパティ            | 型                             | 説明                                                                                                                                                  |
+| :-------------------- | :----------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `position`            | `{ lat: number, lng: number }` | マーカーの緯度・経度。                                                                                                                                |
+| `pinStyle`            | `object` (任意)                | ピンの外観スタイル（下記参照）。                                                                                                                      |
+| `advancedMarkerProps` | `object` (任意)                | 内部の [`<AdvancedMarker>`](https://visgl.github.io/react-google-maps/docs/api-reference/components/advanced-marker#props) に直接渡されるプロパティ。 |
 
 #### `pinStyle`
 

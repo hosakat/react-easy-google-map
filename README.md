@@ -72,14 +72,14 @@ export default App;
 
 ### `GoogleMap` Props
 
-| Prop              | Type                         | Required | Description                                                                 |
-| :---------------- | :--------------------------- | :------- | :-------------------------------------------------------------------------- |
-| `apiKey`          | `string`                     | Yes      | Your Google Maps API Key.                                                   |
-| `mapId`           | `string`                     | Yes      | Your Google Maps Map ID (required for Advanced Markers).                    |
-| `data`            | `MapData<T>[]`               | Yes      | Array of data objects for markers and info windows.                         |
-| `centerMarker`    | `PinContent`                 | Yes      | Configuration for the main/center marker.                                   |
-| `mapProps`        | `Omit<MapProps, ...>`        | No       | Overrides for the underlying `@vis.gl/react-google-maps` `<Map>` component. |
-| `infoWindowProps` | `Omit<InfoWindowProps, ...>` | No       | Overrides for the `@vis.gl/react-google-maps` `<InfoWindow>` component.     |
+| Prop              | Type                         | Required | Description                                                                                                                                                          |
+| :---------------- | :--------------------------- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `apiKey`          | `string`                     | Yes      | Your Google Maps API Key.                                                                                                                                            |
+| `mapId`           | `string`                     | Yes      | Your Google Maps Map ID (required for Advanced Markers).                                                                                                             |
+| `data`            | `MapData<T>[]`               | Yes      | Array of data objects for markers and info windows.                                                                                                                  |
+| `centerMarker`    | `PinContent`                 | Yes      | Configuration for the main/center marker.                                                                                                                            |
+| `mapProps`        | `Omit<MapProps, ...>`        | No       | Overrides for the underlying `@vis.gl/react-google-maps` `<Map>` component.                                                                                          |
+| `infoWindowProps` | `Omit<InfoWindowProps, ...>` | No       | Overrides for the `@vis.gl/react-google-maps` [`<InfoWindow>`](https://visgl.github.io/react-google-maps/docs/api-reference/components/info-window#props) component. |
 
 ### Data Types
 
@@ -87,11 +87,11 @@ export default App;
 
 Configuration for a single pin (marker).
 
-| Property              | Type                           | Description                                         |
-| :-------------------- | :----------------------------- | :-------------------------------------------------- |
-| `position`            | `{ lat: number, lng: number }` | The geographic location of the marker.              |
-| `pinStyle`            | `object` (Optional)            | Visual style of the pin (see below).                |
-| `advancedMarkerProps` | `object` (Optional)            | Direct props for the underlying `<AdvancedMarker>`. |
+| Property              | Type                           | Description                                                                                                                                          |
+| :-------------------- | :----------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `position`            | `{ lat: number, lng: number }` | The geographic location of the marker.                                                                                                               |
+| `pinStyle`            | `object` (Optional)            | Visual style of the pin (see below).                                                                                                                 |
+| `advancedMarkerProps` | `object` (Optional)            | Direct props for the underlying [`<AdvancedMarker>`](https://visgl.github.io/react-google-maps/docs/api-reference/components/advanced-marker#props). |
 
 #### `pinStyle`
 
