@@ -1,5 +1,7 @@
 # react-easy-google-map
 
+[![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/hosakat/react-easy-google-map/blob/main/LICENSE.MD)
+
 An easy-to-use React component for Google Maps that simplifies the process of displaying advanced markers and info windows. This library wraps `@vis.gl/react-google-maps` to provide a clean and straightforward API.
 
 ## Features
