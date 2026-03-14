@@ -1,0 +1,32 @@
+changelog:
+  exclude:
+    labels:
+      - ignore-for-release
+    authors:
+      - hosakat
+  categories:
+    - title: Breaking Changes
+      labels:
+        - Semver-Major
+        - breaking-change
+    - title: Added
+      labels:
+        - added
+    - title: Changed
+      labels:
+        - changed
+    - title: Deprecated
+      labels:
+        - deprecated
+    - title: Removed
+      labels:
+        - removed
+    - title: Fixed
+      labels:
+        - fixed
+    - title: Security
+      labels:
+        - security
+    - title: Other Changes
+      labels:
+        - '*'
