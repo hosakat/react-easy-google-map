@@ -1,0 +1,107 @@
+name: Weekly npm audit (prod-only)
+
+on:
+  schedule:
+    - cron: '0 0 * * 1' # Every Monday 00:00 UTC (09:00 JST)
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run npm audit (prod only)
+        run: |
+          npm audit --audit-level=high --omit=dev --json > audit.json || true
+
+      - name: Create or update issue on High+
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const core = require('@actions/core');
+            const path = 'audit.json';
+            if (!fs.existsSync(path)) {
+              core.info('audit.json not found; skipping');
+              return;
+            }
+            const data = JSON.parse(fs.readFileSync(path, 'utf8'));
+            function countHighOrCritical(d) {
+              let high = 0, critical = 0;
+              if (d.metadata && d.metadata.vulnerabilities) {
+                high = d.metadata.vulnerabilities.high || 0;
+                critical = d.metadata.vulnerabilities.critical || 0;
+                return {high, critical, total: high + critical};
+              }
+              let total = 0;
+              if (d.vulnerabilities) {
+                for (const k of Object.keys(d.vulnerabilities)) {
+                  const v = d.vulnerabilities[k];
+                  if (v.severity === 'high' || v.severity === 'critical') total++;
+                }
+              }
+              return {high: total, critical: 0, total};
+            }
+            const {high, critical, total} = countHighOrCritical(data);
+            if (total <= 0) {
+              core.info('No High/Critical vulnerabilities found.');
+              return;
+            }
+            function extractList(d, max=20) {
+              const items = [];
+              if (d.vulnerabilities) {
+                for (const [name, v] of Object.entries(d.vulnerabilities)) {
+                  if (v.severity === 'high' || v.severity === 'critical') {
+                    const fix = v.fixAvailable ? (typeof v.fixAvailable === 'object' ? `${v.fixAvailable.name}@${v.fixAvailable.version}` : 'available') : 'n/a';
+                    items.push(`- ${name}@${v.installedVersion || '?'} → fix: ${fix} (${v.severity})`);
+                  }
+                }
+              }
+              return items.slice(0, max).join('\n');
+            }
+            const list = extractList(data);
+            const today = new Date().toISOString().slice(0,10);
+            const title = `Security: npm audit High+ found (${today})`;
+            const body = [
+              `検出件数: High=${high}, Critical=${critical}`,
+              '',
+              '概要（最大20件）:',
+              list || '(詳細はワークフローログ参照)',
+              '',
+              '対応方針:',
+              '- 依存パッケージのアップデートを検討',
+              '- 影響範囲の確認',
+              '',
+              '@hosakat'
+            ].join('\n');
+            const {owner, repo} = context.repo;
+            const q = `repo:${owner}/${repo} is:issue is:open label:security in:title "Security: npm audit High+ found"`;
+            const search = await github.rest.search.issuesAndPullRequests({ q });
+            if (search.data.items.length > 0) {
+              const issue = search.data.items[0];
+              await github.rest.issues.update({
+                owner, repo, issue_number: issue.number,
+                title, body, assignees: ['hosakat'], labels: ['security']
+              });
+              core.info(`Updated existing issue #${issue.number}`);
+            } else {
+              const created = await github.rest.issues.create({
+                owner, repo, title, body, assignees: ['hosakat'], labels: ['security']
+              });
+              core.info(`Created issue #${created.data.number}`);
+            }
