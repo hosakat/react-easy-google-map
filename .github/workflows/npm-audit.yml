@@ -34,7 +34,6 @@ jobs:
         with:
           script: |
             const fs = require('fs');
-            const core = require('@actions/core');
             const path = 'audit.json';
             if (!fs.existsSync(path)) {
               core.info('audit.json not found; skipping');
